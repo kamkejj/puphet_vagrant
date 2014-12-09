@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                HSfYdx9q4Ehh:
+                PvQILvCbq0nc:
                     host: '7700'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,9 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            FYifDen6yMic:
+            ceCLvx3RqDXa:
+                owner: ''
+                group: ''
                 source: ./
                 target: /var/www
                 sync_type: default
@@ -81,7 +83,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        Ky5m5DAAOXdr:
+        tN76KDkBDzaw:
             servername: yii.dev
             serveraliases:
                 - www.yii.dev
@@ -101,11 +103,31 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
-        qCQePFxKY1eW:
+        zlfK4TDsrbGu:
             servername: wordpress.dev
             serveraliases:
                 - www.wordpress.dev
             docroot: /var/www/wp
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            override:
+                - All
+            options:
+                - Indexes
+                - FollowSymLinks
+                - MultiViews
+            engine: php
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        QQmXboN3lqnt:
+            servername: yii1.dev
+            serveraliases:
+                - www.yii1.dev
+            docroot: /var/www/yii-1.1.15/testdrive
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -128,8 +150,10 @@ nginx:
         default_vhost: 1
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
+    upstreams: {  }
     vhosts:
-        alUTrtaApXEL:
+        Qtj3959xNNv0:
+            proxy: ''
             server_name: awesome.dev
             server_aliases:
                 - www.awesome.dev
@@ -143,6 +167,7 @@ nginx:
             envvars:
                 - 'APP_ENV dev'
             engine: php
+            client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
 php:
@@ -187,13 +212,16 @@ xdebug:
         xdebug.remote_port: '9000'
 xhprof:
     install: '0'
+wpcli:
+    install: '0'
+    version: ''
 drush:
     install: '1'
     version: 6.3.0
 ruby:
     install: '1'
     versions:
-        aVWV5cy4k4VC:
+        A2tFsSbkcAIr:
             version: ''
 nodejs:
     install: '0'
@@ -202,14 +230,15 @@ python:
     install: '1'
     packages: {  }
     versions:
-        0Q3pbopwz1F2:
+        tQyBLKHOW5jj:
             version: ''
 mysql:
     install: '1'
+    override_options: {  }
     root_password: password
     adminer: 0
     databases:
-        dSngTdmqhoJx:
+        lifQvhvkb5Tt:
             grant:
                 - ALL
             name: yii2basic
@@ -217,12 +246,20 @@ mysql:
             user: yii2basic
             password: password
             sql_file: ''
-        2N7ZFRoelFlx:
+        52nhySELtRKh:
             grant:
                 - ALL
             name: wordpress
             host: localhost
             user: wordpress
+            password: password
+            sql_file: ''
+        HjmLjGaxOBCl:
+            grant:
+                - ALL
+            name: yii1basic
+            host: localhost
+            user: yii1basic
             password: password
             sql_file: ''
 postgresql:
@@ -236,6 +273,7 @@ postgresql:
     adminer: 0
 mariadb:
     install: '0'
+    override_options: {  }
     root_password: '123'
     adminer: 0
     databases: {  }
@@ -282,6 +320,11 @@ rabbitmq:
 elastic_search:
     install: '0'
     settings:
+        version: ''
         java_install: true
-        autoupgrade: true
+solr:
+    install: '0'
+    settings:
+        version: ''
+        port: ''
 
